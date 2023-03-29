@@ -2,6 +2,7 @@ import config from './src/config.js';
 
 import bubbleSort from './src/sortings/bubble-sort.js';
 import selectionSort from './src/sortings/selection-sort.js';
+import insertionSort from './src/sortings/insertion-sort.js';
 
 import shuffleArray from './src/sortings/shuffle.js';
 import { update, updateWithDelay } from './src/update.js';
@@ -66,6 +67,7 @@ function startSorting(algo) {
       return selectionSort(dataset, update, updateWithDelay, timeoutIds);
     }
     case 'insertion': {
+      return insertionSort(dataset, update, updateWithDelay, timeoutIds);
     }
     case 'merge': {
     }
@@ -110,6 +112,8 @@ resetBtn.addEventListener('click', () => {
 });
 
 function disableBtns() {
+  algoSelect.disabled = true;
+  sizeSelect.disabled = true;
   startBtn.disabled = true;
   shuffleBtn.disabled = true;
   document.querySelector('.menu__btn--stop').classList.add('on');
@@ -117,6 +121,8 @@ function disableBtns() {
 }
 
 function enableBtns() {
+  algoSelect.disabled = false;
+  sizeSelect.disabled = false;
   startBtn.disabled = false;
   shuffleBtn.disabled = false;
   stopBtn.disabled = false;
