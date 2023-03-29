@@ -1,5 +1,8 @@
 import config from './src/config.js';
+
 import bubbleSort from './src/sortings/bubble-sort.js';
+import selectionSort from './src/sortings/selection-sort.js';
+
 import shuffleArray from './src/sortings/shuffle.js';
 import { update, updateWithDelay } from './src/update.js';
 
@@ -20,6 +23,7 @@ function generateData(size) {
       width: cellWidth,
       height: (config.height / size) * el,
       selected: false,
+      selected2: false,
       done: false,
     };
   });
@@ -56,9 +60,10 @@ function resetChart() {
 function startSorting(algo) {
   switch (algo) {
     case 'bubble': {
-      bubbleSort(dataset, update, updateWithDelay, timeoutIds);
+      return bubbleSort(dataset, update, updateWithDelay, timeoutIds);
     }
     case 'selection': {
+      return selectionSort(dataset, update, updateWithDelay, timeoutIds);
     }
     case 'insertion': {
     }

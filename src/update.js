@@ -16,6 +16,8 @@ export function update(dataset) {
         return '#00e5a0';
       } else if (d.selected) {
         return 'brown';
+      } else if (d.selected2) {
+        return 'red';
       }
       return '#aaa';
     });
@@ -26,6 +28,7 @@ export function updateWithDelay(dataset, timeoutIds) {
     timeoutIds.push(
       setTimeout(() => {
         resolve(update(dataset));
+        timeoutIds.pop();
       }, config.transitionDelay)
     );
   });
