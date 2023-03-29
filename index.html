@@ -14,12 +14,18 @@
 
     <main>
       <div class="menu">
-        <select class="menu__list">
-          <option class="menu__list__item" selected>Bubble Sort</option>
-          <option class="menu__list__item">Selection Sort</option>
-          <option class="menu__list__item">Insertion Sort</option>
-          <option class="menu__list__item">Merge Sort</option>
-          <option class="menu__list__item">Quick Sort</option>
+        <select class="menu__algo">
+          <option class="menu__algo__item" value="bubble" selected>
+            Bubble Sort
+          </option>
+          <option class="menu__algo__item" value="selection">
+            Selection Sort
+          </option>
+          <option class="menu__algo__item" value="insertion">
+            Insertion Sort
+          </option>
+          <option class="menu__algo__item" value="merge">Merge Sort</option>
+          <option class="menu__algo__item" value="quick">Quick Sort</option>
         </select>
 
         <select class="menu__size">
@@ -27,10 +33,13 @@
           <option class="menu__size__item" value="50">50</option>
           <option class="menu__size__item" value="100">100</option>
         </select>
+
+        <button class="menu__btn--start">Sorting</button>
+        <button class="menu__btn--shuffle">Shuffle</button>
       </div>
 
       <div id="chart-wrapper">
-        <svg width="860" height="860">
+        <svg>
           <g id="chart"></g>
         </svg>
       </div>

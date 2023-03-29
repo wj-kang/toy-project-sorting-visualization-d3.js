@@ -1,13 +1,19 @@
 import config from './src/config.js';
+import bubbleSort from './src/sortings/bubble-sort.js';
+import shuffleArray from './src/sortings/shuffle.js';
+import { update, updateWithDelay } from './src/update.js';
+
+let dataset;
 
 function generateData(size) {
-  const data = Array(Number(size))
+  let data = Array(Number(size))
     .fill(null)
     .map((_, i) => i + 1);
 
-  const cellWidth = config.width / size;
+  shuffleArray(data, 'random');
 
-  const layoutData = data.map((el, idx) => {
+  const cellWidth = config.width / size;
+  const layoutData = data.map((el) => {
     return {
       value: el,
       width: cellWidth,
@@ -18,17 +24,54 @@ function generateData(size) {
   return layoutData;
 }
 
-function update(dataset) {
-  d3.select('#chart')
-    .selectAll('rect')
-    .data(dataset)
-    .join('rect')
-    .attr('width', (d) => d.width - 2)
-    .attr('height', (d) => d.height)
-    .attr('x', (d, idx) => d.width * idx)
-    .attr('y', (d) => config.height - d.height)
-    .attr('fill', 'blue');
+dataset = generateData(document.querySelector('.menu__size').value);
+
+// Init
+function initCharts() {
+  d3.selectAll('#chart-wrapper svg')
+    .attr('width', config.width)
+    .attr('height', config.height);
+
+  update(dataset);
 }
 
-const dataset = generateData(document.querySelector('.menu__size').value);
-update(dataset);
+initCharts();
+
+function startSorting(algo) {
+  switch (algo) {
+    case 'bubble': {
+      bubbleSort(dataset, updateWithDelay);
+    }
+    case 'selection': {
+    }
+    case 'insertion': {
+    }
+    case 'merge': {
+    }
+    case 'quick': {
+    }
+  }
+}
+
+/* Input, Btn Handlers */
+const algoSelect = document.querySelector('.menu__algo');
+algoSelect.addEventListener('change', (e) => {
+  console.log(e.target.value);
+});
+
+const sizeSelect = document.querySelector('.menu__size');
+sizeSelect.addEventListener('change', (e) => {
+  dataset = generateData(e.target.value);
+  update(dataset);
+});
+
+const startBtn = document.querySelector('.menu__btn--start');
+startBtn.addEventListener('click', () => {
+  startSorting(algoSelect.value);
+});
+
+const shuffleBtn = document.querySelector('.menu__btn--shuffle');
+shuffleBtn.addEventListener('click', () => {
+  shuffleArray(dataset);
+  update(dataset);
+});
