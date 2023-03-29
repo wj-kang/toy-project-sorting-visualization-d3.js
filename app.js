@@ -27,15 +27,30 @@ function generateData(size) {
   return layoutData;
 }
 
-dataset = generateData(document.querySelector('.menu__size').value);
+/* Init/Reset */
+function clearTimeoutIds() {
+  timeoutIds.forEach((id) => clearTimeout(id));
+  timeoutIds = [];
+}
 
-// Init
+function removeChart() {
+  d3.select('#chart').selectAll('*').remove();
+}
+
 function initChart() {
   d3.selectAll('#chart-wrapper svg')
     .attr('width', config.width)
     .attr('height', config.height);
 
+  dataset = generateData(document.querySelector('.menu__size').value);
   update(dataset);
+}
+
+function resetChart() {
+  clearTimeoutIds();
+  removeChart();
+  initChart();
+  enableBtns();
 }
 
 function startSorting(algo) {
@@ -54,31 +69,18 @@ function startSorting(algo) {
   }
 }
 
-function clearTimeoutIds() {
-  timeoutIds.forEach((id) => clearTimeout(id));
-  timeoutIds = [];
-}
-
-function removeChart() {
-  clearTimeoutIds();
-  d3.select('#chart').selectAll('*').remove();
-}
-
-/* Input, Btn Handlers */
+/* Input Handlers */
 const algoSelect = document.querySelector('.menu__algo');
 algoSelect.addEventListener('change', (e) => {
-  console.log(e.target.value);
-  enableBtns();
+  resetChart();
 });
 
 const sizeSelect = document.querySelector('.menu__size');
 sizeSelect.addEventListener('change', (e) => {
-  removeChart();
-  dataset = generateData(e.target.value);
-  update(dataset);
-  enableBtns();
+  resetChart();
 });
 
+/* Btn Handlers */
 const shuffleBtn = document.querySelector('.menu__btn--shuffle');
 shuffleBtn.addEventListener('click', () => {
   shuffleArray(dataset);
@@ -91,14 +93,30 @@ startBtn.addEventListener('click', () => {
   disableBtns();
 });
 
+const stopBtn = document.querySelector('.menu__btn--stop');
+stopBtn.addEventListener('click', () => {
+  stopBtn.disabled = true;
+  clearTimeoutIds();
+});
+
+const resetBtn = document.querySelector('.menu__btn--reset');
+resetBtn.addEventListener('click', () => {
+  resetChart();
+});
+
 function disableBtns() {
   startBtn.disabled = true;
   shuffleBtn.disabled = true;
+  document.querySelector('.menu__btn--stop').classList.add('on');
+  document.querySelector('.menu__btn--reset').classList.add('on');
 }
 
 function enableBtns() {
   startBtn.disabled = false;
   shuffleBtn.disabled = false;
+  stopBtn.disabled = false;
+  document.querySelector('.menu__btn--stop').classList.remove('on');
+  document.querySelector('.menu__btn--reset').classList.remove('on');
 }
 
 // Init

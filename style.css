@@ -1,3 +1,13 @@
 body {
   background-color: #eee;
 }
+
+.menu__btn--stop,
+.menu__btn--reset {
+  display: none;
+}
+
+.menu__btn--stop.on,
+.menu__btn--reset.on {
+  display: inline-block;
+}
