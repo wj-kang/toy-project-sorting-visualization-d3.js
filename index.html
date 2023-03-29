@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting Algorithm Visualization</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Sorting Algorithm Visualization</h1>
+    </header>
+
+    <main>
+      <div class="menu">
+        <select class="menu__list">
+          <option class="menu__list__item" selected>Bubble Sort</option>
+          <option class="menu__list__item">Selection Sort</option>
+          <option class="menu__list__item">Insertion Sort</option>
+          <option class="menu__list__item">Merge Sort</option>
+          <option class="menu__list__item">Quick Sort</option>
+        </select>
+
+        <select class="menu__size">
+          <option class="menu__size__item" value="10" selected>10</option>
+          <option class="menu__size__item" value="50">50</option>
+          <option class="menu__size__item" value="100">100</option>
+        </select>
+      </div>
+
+      <div id="chart-wrapper">
+        <svg width="860" height="860">
+          <g id="chart"></g>
+        </svg>
+      </div>
+    </main>
+
+    <footer>Footer</footer>
+
+    <script src="node_modules/d3/dist/d3.js"></script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
