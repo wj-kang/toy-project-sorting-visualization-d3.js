@@ -14,11 +14,12 @@ export function update(dataset) {
     .attr('fill', (d) => {
       if (d.done) {
         return '#00e5a0';
-      } else if (d.selected) {
-        return 'brown';
       } else if (d.selected2) {
-        return 'red';
+        return '#7332bc';
+      } else if (d.selected) {
+        return '#b265d8';
       }
+
       return '#aaa';
     });
 }
