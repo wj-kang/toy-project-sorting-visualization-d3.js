@@ -11,6 +11,7 @@ export default async function insertionSort(
 
     arr[curr].selected2 = true;
     arr[curr - 1].selected = true;
+    await updateWithDelay(arr, timeoutIds);
 
     while (curr > 0 && arr[curr - 1].value > arr[curr].value) {
       arr[curr - 1].selected = true;
@@ -28,6 +29,7 @@ export default async function insertionSort(
       arr[curr - 1].selected = false;
       arr[curr - 1].selected2 = false;
     }
+
     arr[curr].selected = false;
     arr[curr].selected2 = false;
   }
