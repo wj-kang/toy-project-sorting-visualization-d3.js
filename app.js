@@ -10,11 +10,11 @@ import { update, updateWithDelay } from './src/update.js';
 let dataset;
 let timeoutIds = [];
 
-function generateData(size) {
-  let data = Array(Number(size))
+function generateData(_size) {
+  const size = Number(_size);
+  let data = Array(size)
     .fill(null)
     .map((_, i) => i + 1);
-
   shuffleArray(data, 'random');
 
   const cellWidth = config.width / size;
@@ -69,18 +69,14 @@ function startSorting(algo) {
     case 'insertion': {
       return insertionSort(dataset, update, updateWithDelay, timeoutIds);
     }
-    case 'merge': {
-    }
-    case 'quick': {
-    }
   }
 }
 
 /* Input Handlers */
 const algoSelect = document.querySelector('.menu__algo');
-algoSelect.addEventListener('change', (e) => {
-  resetChart();
-});
+// algoSelect.addEventListener('change', (e) => {
+//   resetChart();
+// });
 
 const sizeSelect = document.querySelector('.menu__size');
 sizeSelect.addEventListener('change', (e) => {
@@ -100,12 +96,6 @@ startBtn.addEventListener('click', () => {
   disableBtns();
 });
 
-const stopBtn = document.querySelector('.menu__btn--stop');
-stopBtn.addEventListener('click', () => {
-  stopBtn.disabled = true;
-  clearTimeoutIds();
-});
-
 const resetBtn = document.querySelector('.menu__btn--reset');
 resetBtn.addEventListener('click', () => {
   resetChart();
@@ -116,7 +106,6 @@ function disableBtns() {
   sizeSelect.disabled = true;
   startBtn.disabled = true;
   shuffleBtn.disabled = true;
-  document.querySelector('.menu__btn--stop').classList.add('on');
   document.querySelector('.menu__btn--reset').classList.add('on');
 }
 
@@ -125,8 +114,6 @@ function enableBtns() {
   sizeSelect.disabled = false;
   startBtn.disabled = false;
   shuffleBtn.disabled = false;
-  stopBtn.disabled = false;
-  document.querySelector('.menu__btn--stop').classList.remove('on');
   document.querySelector('.menu__btn--reset').classList.remove('on');
 }
 

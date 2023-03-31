@@ -9,7 +9,7 @@
 
   <body>
     <header>
-      <h1>Sorting Algorithm Visualization</h1>
+      <h1>Sorting Visualization</h1>
     </header>
 
     <main>
@@ -24,20 +24,23 @@
           <option class="menu__algo__item" value="insertion">
             Insertion Sort
           </option>
-          <option class="menu__algo__item" value="merge">Merge Sort</option>
-          <option class="menu__algo__item" value="quick">Quick Sort</option>
         </select>
 
         <select class="menu__size">
-          <option class="menu__size__item" value="10" selected>10</option>
-          <option class="menu__size__item" value="50">50</option>
-          <option class="menu__size__item" value="100">100</option>
+          <option class="menu__size__item" value="10" selected>Size: 10</option>
+          <option class="menu__size__item" value="25">Size: 25</option>
+          <option class="menu__size__item" value="50">Size: 50</option>
         </select>
 
-        <button class="menu__btn--start">Sorting</button>
-        <button class="menu__btn--shuffle">Shuffle</button>
-        <button class="menu__btn--stop">Stop</button>
-        <button class="menu__btn--reset">Reset</button>
+        <div class="menu__btn">
+          <div class="menu__btn__left">
+            <button class="menu__btn--shuffle">Shuffle</button>
+            <button class="menu__btn--start">Start</button>
+          </div>
+          <div class="menu__btn__right">
+            <button class="menu__btn--reset">Reset</button>
+          </div>
+        </div>
       </div>
 
       <div id="chart-wrapper">
@@ -47,7 +50,16 @@
       </div>
     </main>
 
-    <footer>Footer</footer>
+    <footer>
+      <div>
+        Built with <a href="https://d3js.org/" target="_blank">D3.js</a>
+      </div>
+      <div>
+        © 2023
+        <a href="https://www.wonjunkang.com" target="_blank">Wonjun Kang</a>.
+        All rights reserved.
+      </div>
+    </footer>
 
     <script src="node_modules/d3/dist/d3.js"></script>
     <script type="module" src="app.js"></script>
